@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Star Oil</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Deconnecter</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="stationList">Liste Station</string>
+    <string name="title_activity_add_station">Nouvelle Station</string>
+    <string name="enregistrer">Enregistrer</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_add_pompist">Nouveau Pompist</string>
+    <string name="spinner_title">Spinner Station</string>
+    <string name="title_activity_command">CommandActivity</string>
+    <string name="title_activity_comand">ComandActivity</string>
+    <string name="title_activity_stock">StockActivity</string>
+    <string name="title_activity_pompist">PompistActivity</string>
+    <string name="title_activity_ativities">AtivitiesActivity</string>
+    <string name="title_activity_stations">StationsActivity</string>
+    <string name="title_activity_home">HomeActivity</string>
+</resources>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.station.bangoura.stationnew">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/star"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".activity.MainActivity"
+            android:label="@string/app_name"
+             >
+
+        </activity>
+
+        <activity
+            android:name=".activity.AddStationActivity"
+            android:label="@string/title_activity_add_station"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.AddPompistActivity"
+            android:label="@string/title_activity_add_pompist"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.CommandActivity"
+            android:label="@string/title_activity_command"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name=".activity.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.ComandActivity"
+            android:label="@string/title_activity_comand"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.StockActivity"
+            android:label="@string/title_activity_stock"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.PompistActivity"
+            android:label="@string/title_activity_pompist"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.AtivitiesActivity"
+            android:label="@string/title_activity_ativities"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity
+            android:name=".activity.StationsActivity"
+            android:label="@string/title_activity_stations"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".activity.HomeActivity"
+            android:label="@string/title_activity_home"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".activity.DetailsListActivity"></activity>
+    </application>
+
+</manifest>

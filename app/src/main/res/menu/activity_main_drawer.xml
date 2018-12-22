@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/baseline_home_black_18dp"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_camera"
+            android:icon="@drawable/baseline_local_gas_station_black_36"
+            android:title="Station" />
+        <item
+            android:id="@+id/nav_activity"
+            android:icon="@drawable/activity"
+            android:title="Activities" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/sharp_supervisor_account_black_36"
+            android:title="Pompist" />
+
+
+                <item
+                    android:id="@+id/nav_sen"
+                    android:icon="@drawable/ic_menu_send"
+                    android:title="Commande" />
+
+        <item
+            android:id="@+id/nav_stock"
+            android:icon="@drawable/icons8"
+            android:title="Stock" />
+
+        <item
+            android:id="@+id/nav_cuve"
+            android:icon="@drawable/jauge"
+            android:title="Cuves" />
+
+
+
+
+    </group>
+
+
+
+
+</menu>

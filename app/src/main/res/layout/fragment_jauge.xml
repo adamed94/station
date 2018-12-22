@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".activity.JaugeFragment">
+
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_centerInParent="true"
+    android:layout_width="500dp"
+    android:layout_height="400dp">
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+
+               android:textSize="25dp"
+               android:textColor="@color/colorPrimary"
+               android:layout_marginBottom="10dp"
+
+               android:text="Nunero de la règle Essence :"/>
+           <EditText
+               android:layout_width="150dp"
+               android:layout_height="wrap_content"
+               android:ems="15"
+               android:layout_marginBottom="30dp"
+               android:layout_marginLeft="100dp"
+               android:inputType="number"
+               android:id="@+id/etInDepart"/>
+
+
+
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+               android:textSize="25dp"
+               android:textColor="@color/colorPrimary"
+               android:text="Numero de la règle Gazoil :" />
+           <EditText
+               android:layout_marginBottom="30dp"
+               android:layout_width="150dp"
+               android:layout_height="wrap_content"
+               android:ems="15"
+               android:layout_marginLeft="100dp"
+               android:inputType="number"
+               android:id="@+id/etInFin"/>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_marginLeft="70dp">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardV"
+            android:layout_width="200dp"
+            android:layout_height="35dp"
+
+
+            android:layout_alignParentBottom="true"
+
+            android:layout_centerHorizontal="true"
+
+
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="83dp"
+            app:cardBackgroundColor="@color/colorAccent"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+
+                    android:layout_centerHorizontal="true"
+
+                    android:layout_marginTop="0dp"
+                    android:text="Enregistrer"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="30dp" />
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+</LinearLayout>
+
+
+
+
+   </RelativeLayout>
+
+</FrameLayout>

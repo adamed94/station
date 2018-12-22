@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activity.AtivitiesActivity"
+    tools:showIn="@layout/activity_ativities"
+    android:orientation="vertical">
+
+    <LinearLayout
+
+        android:layout_width="336dp"
+        android:layout_height="29dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+
+        android:layout_marginStart="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="17dp"
+        android:orientation="horizontal">
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pompe : " />
+
+        <Spinner
+            android:id="@+id/spinPomp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:visibility="invisible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pompiste : " />
+
+        <Spinner
+            android:visibility="invisible"
+            android:id="@+id/spinPompist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            />
+    </LinearLayout>
+    <EditText
+
+        android:id="@+id/etIndDepEss"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+
+        android:hint="Index Depart Essence"
+        android:inputType="number" />
+    <EditText
+        android:id="@+id/etIndFinEss"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:hint="Index Fin Essence"
+        android:inputType="number" />
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        android:layout_marginLeft="10dp"
+
+        <CheckBox
+            android:id="@+id/cbEss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="40dp"
+            android:text="RC Essence" />
+
+        <EditText
+            android:id="@+id/etRCEss"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+
+
+            android:hint="RC Essence"
+            android:inputType="number" />
+
+    </LinearLayout>
+    <EditText
+
+        android:id="@+id/etIndDepGaz"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:hint="Index Depart Gaz"
+        android:inputType="number" />
+    <EditText
+
+        android:id="@+id/etIndFinGaz"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:hint="Index Fin Gaz"
+        android:inputType="number" />
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <CheckBox
+            android:id="@+id/cbGaz"
+            android:layout_width="wrap_content"
+            android:text="RC Gasoil"
+            android:paddingRight="40dp"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/etRCGaz"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:hint="RC Gasoil"
+            android:inputType="number" />
+    </LinearLayout>
+    <Button
+        android:id="@+id/btnSubmitActiv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="120dp"
+        android:layout_marginBottom="43dp"
+        android:layout_marginTop="30dp"
+        android:paddingTop="10dp"
+        android:text="Sauvegarder" />
+
+
+
+</LinearLayout>
