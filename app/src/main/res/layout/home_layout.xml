@@ -52,7 +52,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Check your bank activities"
+                    android:text="Verifier votre Stock"
                     android:padding="5dp"
                     android:textColor="@android:color/darker_gray"/>
 
@@ -93,7 +93,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Verifier votre index"
+                    android:text="Verifier votre indexage"
                     android:padding="5dp"
                     android:textColor="@android:color/darker_gray"/>
 
@@ -145,7 +145,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Check your bank activities"
+                    android:text="Verifier vos commandes"
                     android:padding="5dp"
                     android:textColor="@android:color/darker_gray"/>
 

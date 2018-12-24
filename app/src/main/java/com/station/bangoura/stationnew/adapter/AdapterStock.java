@@ -140,14 +140,14 @@ public class AdapterStock extends RecyclerView.Adapter<AdapterStock.VHStock> {
 
                           }
 
-                    tvNameStation.setText(stat.getName());
-                    essTheo.setText(theoEss+"L");
+                    tvNameStation.setText(stat.getName().toUpperCase());
+                    essTheo.setText(theoEss+" L");
 
-                    essPhy.setText(phyEss+"L");
-                    gazTheo.setText(theoGaz+"L");
+                    essPhy.setText(phyEss+" L");
+                    gazTheo.setText(theoGaz+" L");
                     gazPhy.setText(phyGaz+"L");
-                    tvCoulageEss.setText((theoEss-phyEss)+"L");
-                    tvCoulageGaz.setText((theoGaz-phyGaz)+"L");
+                    tvCoulageEss.setText((theoEss-phyEss)+" L");
+                    tvCoulageGaz.setText((theoGaz-phyGaz)+" L");
 
 
                 }

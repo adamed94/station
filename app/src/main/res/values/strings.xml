@@ -16,11 +16,13 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_add_pompist">Nouveau Pompist</string>
     <string name="spinner_title">Spinner Station</string>
-    <string name="title_activity_command">CommandActivity</string>
-    <string name="title_activity_comand">ComandActivity</string>
-    <string name="title_activity_stock">StockActivity</string>
-    <string name="title_activity_pompist">PompistActivity</string>
-    <string name="title_activity_ativities">AtivitiesActivity</string>
-    <string name="title_activity_stations">StationsActivity</string>
-    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_activity_command">Commandes</string>
+    <string name="title_activity_comand">Commandes</string>
+    <string name="title_activity_stock">Stock</string>
+    <string name="title_activity_pompist">Pompists</string>
+    <string name="title_activity_ativities">Indexage</string>
+    <string name="title_activity_stations">Stations</string>
+    <string name="title_activity_home">Home</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_det_list">Indexage</string>
 </resources>

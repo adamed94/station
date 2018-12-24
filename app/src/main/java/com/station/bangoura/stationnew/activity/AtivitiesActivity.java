@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -37,7 +38,7 @@ import retrofit2.Response;
 
 public class AtivitiesActivity extends AppCompatActivity {
     Spinner spinPomp , spinPompist , spinCarburant;
-    EditText etDepEss , etFinEss , etDepGaz , etFinGaz ;
+    EditText etDepEss , etFinEss , etDepGaz , etFinGaz , etRCEss , etRCGaz;
     ApiClient api;
     List<Station> stats;
     StationService stationService;
@@ -56,6 +57,7 @@ public class AtivitiesActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences ;
     public static final String station = "stationKey";
     public static final String mypreference = "mypref";
+    CheckBox cbEss , cbGaz ;
 
 
 
@@ -81,6 +83,32 @@ public class AtivitiesActivity extends AppCompatActivity {
                 }
             });
         }
+
+        etRCEss = (EditText)findViewById(R.id.etRCEss) ;
+        etRCGaz =   (EditText)findViewById(R.id.etRCGaz) ;
+        cbEss= (CheckBox)findViewById(R.id.cbEss) ;
+        cbGaz= (CheckBox)findViewById(R.id.cbGaz) ;
+
+        cbGaz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(cbGaz.isChecked())
+                    etRCGaz.setVisibility(View.VISIBLE);
+                else
+                    etRCGaz.setVisibility(View.INVISIBLE);
+
+            }
+        });
+        cbEss.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(cbEss.isChecked())
+                    etRCEss.setVisibility(View.VISIBLE);
+                else
+                    etRCEss.setVisibility(View.INVISIBLE);
+
+            }
+        });
         etDepEss =(EditText) findViewById(R.id.etIndDepEss) ;
         etFinEss = (EditText)findViewById(R.id.etIndFinEss) ;
         etDepGaz = (EditText)findViewById(R.id.etIndDepGaz) ;
@@ -111,8 +139,9 @@ public class AtivitiesActivity extends AppCompatActivity {
                        // = new String[pompistList.size()];
                        Toast.makeText(getApplicationContext(),""+response.body().size(),Toast.LENGTH_LONG).show();
                        int n  = response.body().size() ;
+
                        for (int t = 0; t < n; t++) {
-                           System.out.println(response.body().get(t).getName());
+                          // System.out.println(response.body().get(t).getName());
                            pompsName.add(response.body().get(t).getName());
                            Log.d("msg",t+"") ;
                              pomps.add(response.body().get(t)) ;
@@ -148,9 +177,9 @@ public class AtivitiesActivity extends AppCompatActivity {
                     pompistList = response.body();
                     int t = response.body().size() ;
                     // = new String[pompistList.size()];
-                    Toast.makeText(getApplicationContext(),""+response.body().size(),Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(),""+response.body().size(),Toast.LENGTH_LONG).show();
                     for (int i = 0; i < t; i++) {
-                        System.out.println(response.body().get(i).getName());
+                         //System.out.println(response.body().get(i).getName());
                          p.add(response.body().get(i).getName());
 
 

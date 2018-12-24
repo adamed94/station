@@ -11,7 +11,7 @@ public class ApiClient {
     private int CONNECT_TIMEOUT = 20;
 
 
-    public static final String BASE_URL = "http://192.168.1.8/station/public/api/" ;
+    public static final String BASE_URL = "http://192.168.1.8/laravel/stationProd/public/api/" ;
     //public static final String BASE_URL = "http://192.168.43.70:80/api/public/" ;
     private static Retrofit mRetrofit ;
     public static Retrofit getRetrofit() {

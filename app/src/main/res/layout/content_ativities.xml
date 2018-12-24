@@ -85,7 +85,7 @@
             android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-
+            android:visibility="invisible"
 
             android:hint="RC Essence"
             android:inputType="number" />
@@ -127,6 +127,7 @@
             android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:visibility="invisible"
             android:hint="RC Gasoil"
             android:inputType="number" />
     </LinearLayout>
