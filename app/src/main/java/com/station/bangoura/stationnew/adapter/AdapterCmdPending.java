@@ -24,6 +24,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -136,6 +137,8 @@ public class AdapterCmdPending extends RecyclerView.Adapter<AdapterCmdPending.VH
                     Dialog dialog = new Dialog(itemView.getContext());
                     dialog.setContentView(R.layout.details_cmd_lvr);
                     dialog.setTitle("DETAILS COMMANDE");
+
+
                     TextView tvDateCmd = (TextView)dialog.findViewById(R.id.tvDateCmd) ;
                     TextView tvDateRcp = (TextView)dialog.findViewById(R.id.tvDateRcp) ;
 
@@ -169,7 +172,7 @@ public class AdapterCmdPending extends RecyclerView.Adapter<AdapterCmdPending.VH
         public void bind(CmdLivrs cmdlivrs)
         {
 
-            SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss",Locale.JAPAN);
+            SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss",Locale.FRENCH);
             SimpleDateFormat formatt = new SimpleDateFormat("yyyy/MM/dd",Locale.JAPAN);
             Date date = null;
             String s = "" ;
@@ -179,7 +182,7 @@ public class AdapterCmdPending extends RecyclerView.Adapter<AdapterCmdPending.VH
                 String p = String.valueOf(date);
 
                  s = p.substring(0,20);
-                String DateToStr = formatt.format(date);
+                String DateToStr = format.format(date);
                 System.out.println("Date  = "+DateToStr);
                 Log.d("msg" ,s+"") ;
                 //dateCmd.setText(s+"");
@@ -189,8 +192,7 @@ public class AdapterCmdPending extends RecyclerView.Adapter<AdapterCmdPending.VH
             }
 
 
-
-            dateCmd.setText(cmdlivrs.getCreated_at()+"");
+            dateCmd.setText(cmdlivrs.getCreated_at().toString().substring(0,10) +"");
             if (cmdlivrs.getState().equals("pending")  )
                 rec.setVisibility(View.VISIBLE);
             else if(cmdlivrs.getState().equals("receipt"))

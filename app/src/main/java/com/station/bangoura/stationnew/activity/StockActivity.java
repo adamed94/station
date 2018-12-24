@@ -152,6 +152,7 @@ public class StockActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         EditText etRuleNumber ;
                         etRuleNumber = (EditText)dialog.findViewById(R.id.etRuleNumber) ;
+
                         Call<Float> volune = stockService.getVolume(sharedPreferences.getInt(station, 1) , spinner.getSelectedItemPosition()+1 , Integer.valueOf(etRuleNumber.getText().toString()));
                         volune.enqueue(new Callback<Float>() {
                             @Override

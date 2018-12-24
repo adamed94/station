@@ -104,7 +104,7 @@ public class ComandActivity extends AppCompatActivity implements SwipeRefreshLay
                     adapterCmdPending = new AdapterCmdPending(cmdLivrs);
 
                     for (int i = 0; i < cmdLivrs.size(); i++) {
-                        System.out.println(cmdLivrs.get(i).toString());
+                        //System.out.println(cmdLivrs.get(i).toString());
                         //Toast.makeText(getApplicationContext(), cmdLivrs.get(i).toString() , Toast.LENGTH_LONG).show();
                         //Toast.makeText(getApplicationContext(), "Well Done ." + i, Toast.LENGTH_LONG).show();
                     }

@@ -137,7 +137,7 @@ public class AtivitiesActivity extends AppCompatActivity {
                    {
                        pomps = response.body() ;
                        // = new String[pompistList.size()];
-                       Toast.makeText(getApplicationContext(),""+response.body().size(),Toast.LENGTH_LONG).show();
+                      // Toast.makeText(getApplicationContext(),""+response.body().size(),Toast.LENGTH_LONG).show();
                        int n  = response.body().size() ;
 
                        for (int t = 0; t < n; t++) {
@@ -214,7 +214,8 @@ public class AtivitiesActivity extends AppCompatActivity {
 
                 if (etDepEss.getText().toString().equals("") || etFinEss.getText().toString().equals("") || etDepGaz.getText().toString().equals("") || etDepGaz.getText().toString().equals("")  )
                 {
-                    Toast.makeText(AtivitiesActivity.this, "Veuillez bien renseigner les index !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(
+                            AtivitiesActivity.this, "Veuillez bien renseigner les index !", Toast.LENGTH_SHORT).show();
 
                 }
                 else

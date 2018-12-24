@@ -54,7 +54,8 @@
         <activity
             android:name=".activity.AtivitiesActivity"
             android:label="@string/title_activity_ativities"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.StationsActivity"
             android:label="@string/title_activity_stations"

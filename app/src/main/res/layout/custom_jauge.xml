@@ -54,16 +54,16 @@
         </LinearLayout>
 
 
-
-
-
         <Button
             android:id="@+id/btnSubmitPompist"
-            android:layout_width="wrap_content"
+            android:layout_width="115dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
             android:layout_marginLeft="110dp"
-            android:text="@string/enregistrer" />
+
+            android:layout_marginTop="40dp"
+            android:background="@color/colorPrimary"
+            android:text="Enregistrer"
+            android:textColor="@android:color/white" />
 
 
     </LinearLayout>
