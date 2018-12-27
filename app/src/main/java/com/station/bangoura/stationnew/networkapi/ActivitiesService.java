@@ -32,6 +32,14 @@ public interface ActivitiesService {
     @GET("indexage/{station_id}")
     Call<List<Activities>> getActivities(@Path("station_id") int station_id) ;
 
+    @GET("last_index/{station_id}/{pomp}")
+    Call<List<Integer>> getLastIndex(@Path("station_id") int station_id , @Path("pomp") int pomp ) ;
+
+
+
+
+
+
 
 
 }

@@ -124,6 +124,8 @@ public class StockFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                etRuleNumber  =  (EditText) dialog.findViewById(R.id.etRuleNumber);
+
                 dialog = new Dialog(getContext());
                 dialog.setTitle("Jaugeage");
 
@@ -131,7 +133,7 @@ public class StockFragment extends Fragment {
                 dialog.show();
                 final Spinner spinner = (Spinner)dialog.findViewById(R.id.spinner);
                 btnSubmitJauge = (Button)dialog.findViewById(R.id.btnSubmitPompist);
-                etRuleNumber  =  (EditText) dialog.findViewById(R.id.etRuleNumber);
+
                 carburanTypeService = ApiClient.getRetrofit().create(CarburanTypeService.class);
                 Call<List<CarburanType>> carburants = carburanTypeService.getCarburanType() ;
                 carburants.enqueue(new Callback<List<CarburanType>>() {

@@ -3,6 +3,7 @@ package com.station.bangoura.stationnew.activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -63,6 +64,7 @@ public class ComandActivity extends AppCompatActivity implements SwipeRefreshLay
         setSupportActionBar(toolbar);
         sharedPreferences = this.getSharedPreferences("mypref", getApplicationContext().MODE_PRIVATE);
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
+
         mSwipeRefreshLayout.setOnRefreshListener(this);
 
 

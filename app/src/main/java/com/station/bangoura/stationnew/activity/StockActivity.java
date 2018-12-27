@@ -1,7 +1,10 @@
 package com.station.bangoura.stationnew.activity;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -150,32 +153,84 @@ public class StockActivity extends AppCompatActivity {
                 btnSubmitJauge.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        EditText etRuleNumber ;
+
                         etRuleNumber = (EditText)dialog.findViewById(R.id.etRuleNumber) ;
 
-                        Call<Float> volune = stockService.getVolume(sharedPreferences.getInt(station, 1) , spinner.getSelectedItemPosition()+1 , Integer.valueOf(etRuleNumber.getText().toString()));
-                        volune.enqueue(new Callback<Float>() {
-                            @Override
-                            public void onResponse(Call<Float> call, Response<Float> response) {
-                                if (response.isSuccessful())
-                                {
-                                    Toast.makeText(getApplicationContext(),"Volume : " + response.body().toString() ,Toast.LENGTH_LONG).show();
-                                    tvVol.setText(response.body().toString() + " L ");
+                        if(etRuleNumber.getText().toString().equals(""))
+                        {
+                            Toast.makeText(getApplicationContext()," Veuillez saisir le numéro de la règle de barremage . " ,Toast.LENGTH_LONG).show();
+                        }
+                        else
+                        {
+
+                            AlertDialog.Builder builder = new AlertDialog.Builder(StockActivity.this) ;
+                            builder.setMessage("Voulez vous vraiment appliquer ce jaugeage ?") ;
+                            builder.setTitle("Confirmation") ;
+                            builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+
+
+                                    Call<Float> volune = stockService.getVolume(sharedPreferences.getInt(station, 1) , spinner.getSelectedItemPosition()+1 , Integer.valueOf(etRuleNumber.getText().toString()));
+                                    volune.enqueue(new Callback<Float>() {
+                                        @Override
+                                        public void onResponse(Call<Float> call, Response<Float> response) {
+                                            if (response.isSuccessful())
+                                            {
+                                                Toast.makeText(getApplicationContext(),"Volume : " + response.body().toString() ,Toast.LENGTH_LONG).show();
+                                                tvVol.setText(response.body().toString() + " L ");
+                                            }
+                                            else
+                                                Toast.makeText(getApplicationContext(),"Not Success" ,Toast.LENGTH_LONG).show();
+
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<Float> call, Throwable t) {
+                                            Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_LONG).show();
+
+                                        }
+                                    });
+                                    etRuleNumber.setText("");
+                                    dialog.dismiss();
+
                                 }
-                                else
-                                    Toast.makeText(getApplicationContext(),"Not Success" ,Toast.LENGTH_LONG).show();
+                            });
+                            builder.setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
 
-                            }
+                                    dialog.dismiss();
+                                }
+                            }) ;
+                            AlertDialog dialog = builder.create() ;
+                            dialog.show();
 
-                            @Override
-                            public void onFailure(Call<Float> call, Throwable t) {
-                                Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_LONG).show();
 
-                            }
-                        });
+
+
+                        }
+
+
+
 
                     }
-                });
+                        }) ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 carburs = new String[2];
                 carburs[0] = "Essence";
                 carburs[1] = "Gazoil";

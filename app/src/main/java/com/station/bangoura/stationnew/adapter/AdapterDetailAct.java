@@ -102,7 +102,7 @@ public class AdapterDetailAct extends RecyclerView.Adapter<AdapterDetailAct.VHDe
 
 
             gaz.setText((activities.getindex_gaz_end()-activities.getindex_gaz_start())+" L " );
-            ess.setText((activities.getindex_gaz_end()-activities.getindex_ess_start())+" L " ) ;
+            ess.setText((activities.getindex_ess_end()-activities.getindex_ess_start())+" L " ) ;
             montant.setText((activities.getAmount_ess()+activities.getAmount_gaz())+" GNF");
 
 

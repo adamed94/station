@@ -47,7 +47,7 @@ public class AtivitiesActivity extends AppCompatActivity {
     List<Pompist>  pompistList ;
     List<String> p = new ArrayList<String>();
     List<String>  pompsName = new ArrayList<String>();
-
+    List<Integer> lstIndx ;
     PompService pompService ;
     List<String> typeCarburan = new ArrayList<String>();
     Button btnSubmitActiv ;
@@ -83,7 +83,7 @@ public class AtivitiesActivity extends AppCompatActivity {
                 }
             });
         }
-
+        activitiesService =  ApiClient.getRetrofit().create(ActivitiesService.class);
         etRCEss = (EditText)findViewById(R.id.etRCEss) ;
         etRCGaz =   (EditText)findViewById(R.id.etRCGaz) ;
         cbEss= (CheckBox)findViewById(R.id.cbEss) ;
@@ -209,15 +209,38 @@ public class AtivitiesActivity extends AppCompatActivity {
 
         // Enregistrement des activites
         btnSubmitActiv.setOnClickListener(new View.OnClickListener() {
+            int code ;
             @Override
             public void onClick(View v) {
+              Call<List<Integer>> lastIndex =   activitiesService.getLastIndex(1,1);
 
+              lastIndex.enqueue(new Callback<List<Integer>>() {
+                  @Override
+                  public void onResponse(Call<List<Integer>> call, Response<List<Integer>> response) {
+                      code = response.code() ;
+                      Toast.makeText(AtivitiesActivity.this, "Code Response = " + code, Toast.LENGTH_SHORT).show();
+                      if (response.isSuccessful()) {
+                          lstIndx = response.body();
+
+
+                      }
+
+
+                  }
+
+                  @Override
+                  public void onFailure(Call<List<Integer>> call, Throwable t) {
+
+
+                  }
+              });
                 if (etDepEss.getText().toString().equals("") || etFinEss.getText().toString().equals("") || etDepGaz.getText().toString().equals("") || etDepGaz.getText().toString().equals("")  )
                 {
                     Toast.makeText(
                             AtivitiesActivity.this, "Veuillez bien renseigner les index !", Toast.LENGTH_SHORT).show();
 
                 }
+
                 else
                 {
 
@@ -233,7 +256,7 @@ public class AtivitiesActivity extends AppCompatActivity {
                     }
                     else
                     {
-                        activitiesService =  ApiClient.getRetrofit().create(ActivitiesService.class);
+
                         activitiesService.addActivity(pomps.get(u).getId(),Integer.valueOf(etDepEss.getText().toString()),Integer.valueOf(etFinEss.getText().toString()),Integer.valueOf(etDepGaz.getText().toString()),Integer.valueOf(etFinGaz.getText().toString()) , sharedPreferences.getInt(station, 1) )
                                 .enqueue(new Callback<Activities>() {
                                     @Override

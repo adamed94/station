@@ -3,6 +3,7 @@ package com.station.bangoura.stationnew.adapter;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -34,10 +35,12 @@ public class AdapterCmdPending extends RecyclerView.Adapter<AdapterCmdPending.VH
 
     ProvisionningService provisionningService = ApiClient.getRetrofit().create(ProvisionningService.class);
     private List<CmdLivrs> cmdlivrsList ;
+
     private OnCmdLivrsClickLister onCmdLivrsClickLister;
 
     public AdapterCmdPending(List<CmdLivrs> cmdlivrsList) {
         this.cmdlivrsList = cmdlivrsList;
+
     }
 
     public void setOnCmdLivrsClickLister(OnCmdLivrsClickLister onCmdLivrsClickLister) {
@@ -74,7 +77,7 @@ public class AdapterCmdPending extends RecyclerView.Adapter<AdapterCmdPending.VH
 
     public class VHCmdLivrs extends RecyclerView.ViewHolder {
         private TextView dateCmd ,  station , volume ;
-        private Button state , rec ;
+        private Button state , rec , ann ;
         public VHCmdLivrs(@NonNull final View itemView) {
 
 
@@ -82,6 +85,7 @@ public class AdapterCmdPending extends RecyclerView.Adapter<AdapterCmdPending.VH
             dateCmd = (TextView)itemView.findViewById(R.id.tvDateComand);
             state = (Button) itemView.findViewById(R.id.tvStatut);
             rec = (Button)itemView.findViewById(R.id.btnReceipt);
+            ann = (Button)itemView.findViewById(R.id.btnAnn);
             station = (TextView)itemView.findViewById(R.id.tvStation) ;
             volume =(TextView)itemView.findViewById(R.id.tvVolume);
             rec.setOnClickListener(new View.OnClickListener() {
@@ -95,7 +99,7 @@ public class AdapterCmdPending extends RecyclerView.Adapter<AdapterCmdPending.VH
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
-                            Call<CmdLivrs> cmdLivrsCall = provisionningService.receiptProvisionning(cmdlivrsList.get(getLayoutPosition()).getId());
+                            Call<CmdLivrs> cmdLivrsCall = provisionningService.receiptProvisionning(cmdlivrsList.get(getLayoutPosition()).getId(),1);
 
                             cmdLivrsCall.enqueue(new Callback<CmdLivrs>() {
                                 @Override
@@ -108,7 +112,7 @@ public class AdapterCmdPending extends RecyclerView.Adapter<AdapterCmdPending.VH
 
                                 @Override
                                 public void onFailure(Call<CmdLivrs> call, Throwable t) {
-                                    Toast.makeText(itemView.getContext() , t.getMessage(), Toast.LENGTH_LONG).show();
+                                   // Toast.makeText(itemView.getContext() , t.getMessage(), Toast.LENGTH_LONG).show();
 
                                 }
                             });
@@ -197,6 +201,8 @@ public class AdapterCmdPending extends RecyclerView.Adapter<AdapterCmdPending.VH
                 rec.setVisibility(View.VISIBLE);
             else if(cmdlivrs.getState().equals("receipt"))
                 state.setVisibility(View.VISIBLE);
+            else
+                ann.setVisibility(View.VISIBLE);
               //state.setText(cmdlivrs.getState());
 
             volume.setText(cmdlivrs.getQuantity()+" L");

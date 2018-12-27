@@ -17,8 +17,8 @@ public interface ProvisionningService {
     @GET("provisioning/{id}")
     Call<List<CmdLivrs>> getCmdLivrs(@Path("id") int id) ;
 
-    @GET("provisioning/{id}/update")
-    Call<CmdLivrs> receiptProvisionning(@Path("id") int id) ;
+    @GET("provisioning/{id}/{stat}/update")
+    Call<CmdLivrs> receiptProvisionning(@Path("id") int id ,@Path("stat") int stat) ;
 
 
     @FormUrlEncoded

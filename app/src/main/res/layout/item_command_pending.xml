@@ -38,9 +38,16 @@
                 android:layout_height="wrap_content">
                 <Button
                     android:id="@+id/tvStatut"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:visibility="invisible"
+                    android:layout_width="40dp"
+                    android:background="@drawable/done"/>
+                <Button
+                    android:id="@+id/btnAnn"
                     android:layout_marginLeft="15dp"
                     android:layout_width="40dp"
-                    android:background="@drawable/done"
+                    android:background="@drawable/ann"
 
 
                     android:layout_height="wrap_content"
@@ -51,7 +58,7 @@
                     android:id="@+id/btnReceipt"
                     android:layout_width="40dp"
 
-                    android:background="@drawable/reception"
+                    android:background="@drawable/wait"
                     android:visibility="invisible"
                     android:layout_height="wrap_content" />
             </LinearLayout>
