@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -25,7 +26,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DetListActivity extends AppCompatActivity {
+public class DetListActivity extends AppCompatActivity  implements SwipeRefreshLayout.OnRefreshListener{
 
     ActivitiesService activitiesService ;
     List<Activities> activitiesList ;
@@ -57,6 +58,7 @@ public class DetListActivity extends AppCompatActivity {
         sharedPreferences = this.getSharedPreferences("mypref", getApplicationContext().MODE_PRIVATE);
         loader = (AVLoadingIndicatorView) findViewById(R.id.loader);
 
+        //Ceci pour remplir les differentes activites avec la
 
         activitiesService = ApiClient.getRetrofit().create(ActivitiesService.class);
         Call<List<Activities>> acts = activitiesService.getActivities(sharedPreferences.getInt(station, 0));
@@ -66,7 +68,7 @@ public class DetListActivity extends AppCompatActivity {
                 loader.show();
                 if (response.isSuccessful()) {
 
-                    Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
+                    // Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
                     activitiesList = response.body();
                     RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
                     adapterDetailAct = new AdapterDetailAct(activitiesList);
@@ -92,6 +94,11 @@ public class DetListActivity extends AppCompatActivity {
 
             }
         });
+
+
+
+
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,4 +110,64 @@ public class DetListActivity extends AppCompatActivity {
         });
     }
 
+
+
+    public void remplissage()
+    {
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+    @Override
+    public void onRefresh() {
+
+        activitiesService = ApiClient.getRetrofit().create(ActivitiesService.class);
+        Call<List<Activities>> acts = activitiesService.getActivities(sharedPreferences.getInt(station, 0));
+        acts.enqueue(new Callback<List<Activities>>() {
+            @Override
+            public void onResponse(Call<List<Activities>> call, Response<List<Activities>> response) {
+                  loader.show();
+                if (response.isSuccessful()) {
+
+                    // Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
+                    activitiesList = response.body();
+                    RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+                    adapterDetailAct = new AdapterDetailAct(activitiesList);
+                    rvDetList.setAdapter(adapterDetailAct);
+                    rvDetList.setLayoutManager(mLayoutManager);
+                    rvDetList.setHasFixedSize(true);
+                    loader.hide();
+
+
+                } else {
+                    loader.hide();
+                    Toast.makeText(getApplicationContext(), "Ooops ! Une erreur est survenue .", Toast.LENGTH_LONG).show();
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Activities>> call, Throwable t) {
+                loader.hide();
+                Toast.makeText(getApplicationContext(), "Ooops ! Une erreur est survenue .", Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+        loader.hide();
+
+
+
+    }
 }

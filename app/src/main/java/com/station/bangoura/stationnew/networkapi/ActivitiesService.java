@@ -26,6 +26,8 @@ public interface ActivitiesService {
          @Field("index_ess_end") int index_ess_end ,
          @Field("index_gaz_start") int index_gaz_start ,
          @Field("index_gaz_end") int index_gaz_end,
+         @Field("rc_ess") int rc_ess ,
+         @Field("rc_gaz") int rc_gaz ,
          @Field("station_id") int station_id
     ) ;
 

@@ -114,10 +114,7 @@ public class StockActivity extends AppCompatActivity {
                     for (int i = 0; i < stats.size(); i++) {
                         stationNames[i] = stats.get(i).getName();
 
-
-
-
-                    }
+                        }
 
 
                 } else

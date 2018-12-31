@@ -36,6 +36,9 @@ public class AdapterCmdPending extends RecyclerView.Adapter<AdapterCmdPending.VH
     ProvisionningService provisionningService = ApiClient.getRetrofit().create(ProvisionningService.class);
     private List<CmdLivrs> cmdlivrsList ;
 
+    public static final String statio = "stationKey";
+
+
     private OnCmdLivrsClickLister onCmdLivrsClickLister;
 
     public AdapterCmdPending(List<CmdLivrs> cmdlivrsList) {
@@ -99,7 +102,7 @@ public class AdapterCmdPending extends RecyclerView.Adapter<AdapterCmdPending.VH
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
-                            Call<CmdLivrs> cmdLivrsCall = provisionningService.receiptProvisionning(cmdlivrsList.get(getLayoutPosition()).getId(),1);
+                            Call<CmdLivrs> cmdLivrsCall = provisionningService.receiptProvisionning(cmdlivrsList.get(getLayoutPosition()).getId(),cmdlivrsList.get(getLayoutPosition()).getStation_id());
 
                             cmdLivrsCall.enqueue(new Callback<CmdLivrs>() {
                                 @Override
