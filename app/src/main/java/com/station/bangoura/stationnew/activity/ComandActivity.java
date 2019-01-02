@@ -259,23 +259,16 @@ public class ComandActivity extends AppCompatActivity implements SwipeRefreshLay
 
 
                     // Afficher le loader pour materialiser le chargement
-                    loader.show();
+
                     // Toast.makeText(getApplicationContext(), "Well Done !", Toast.LENGTH_LONG).show();
                     cmdLivrs = response.body();
 
                     adapterCmdPending = new AdapterCmdPending(cmdLivrs);
-
-                    for (int i = 0; i < cmdLivrs.size(); i++) {
-                        System.out.println(cmdLivrs.get(i).toString());
-                        //Toast.makeText(getApplicationContext(), cmdLivrs.get(i).toString() , Toast.LENGTH_LONG).show();
-                        //Toast.makeText(getApplicationContext(), "Well Done ." + i, Toast.LENGTH_LONG).show();
-                    }
-
                     RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
                     rv.setAdapter(adapterCmdPending);
                     rv.setLayoutManager(mLayoutManager);
                     rv.setHasFixedSize(true);
-                    loader.hide();
+
 
 
                 }
@@ -286,7 +279,7 @@ public class ComandActivity extends AppCompatActivity implements SwipeRefreshLay
             @Override
             public void onFailure(retrofit2.Call<List<CmdLivrs>> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
-                loader.hide();
+
 
             }
         });

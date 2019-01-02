@@ -35,6 +35,7 @@ public class DetListActivity extends AppCompatActivity  implements SwipeRefreshL
     SharedPreferences sharedPreferences ;
     public static final String station = "stationKey";
     AVLoadingIndicatorView loader;
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,8 @@ public class DetListActivity extends AppCompatActivity  implements SwipeRefreshL
                 }
             });
         }
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipRefreshLayout);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
         rvDetList = (RecyclerView)findViewById(R.id.rvDetList);
         sharedPreferences = this.getSharedPreferences("mypref", getApplicationContext().MODE_PRIVATE);
         loader = (AVLoadingIndicatorView) findViewById(R.id.loader);
@@ -111,63 +114,56 @@ public class DetListActivity extends AppCompatActivity  implements SwipeRefreshL
     }
 
 
-
-    public void remplissage()
-    {
-
-
-
-
-
-
-
-
-
-
-
-    }
-
     @Override
     public void onRefresh() {
+
 
         activitiesService = ApiClient.getRetrofit().create(ActivitiesService.class);
         Call<List<Activities>> acts = activitiesService.getActivities(sharedPreferences.getInt(station, 0));
         acts.enqueue(new Callback<List<Activities>>() {
             @Override
             public void onResponse(Call<List<Activities>> call, Response<List<Activities>> response) {
-                  loader.show();
+
                 if (response.isSuccessful()) {
 
-                    // Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
+
                     activitiesList = response.body();
                     RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
                     adapterDetailAct = new AdapterDetailAct(activitiesList);
                     rvDetList.setAdapter(adapterDetailAct);
                     rvDetList.setLayoutManager(mLayoutManager);
                     rvDetList.setHasFixedSize(true);
-                    loader.hide();
+
 
 
                 } else {
-                    loader.hide();
+
+
                     Toast.makeText(getApplicationContext(), "Ooops ! Une erreur est survenue .", Toast.LENGTH_LONG).show();
 
                 }
+                mSwipeRefreshLayout.setRefreshing(false);
 
 
             }
 
             @Override
             public void onFailure(Call<List<Activities>> call, Throwable t) {
-                loader.hide();
+
+
                 Toast.makeText(getApplicationContext(), "Ooops ! Une erreur est survenue .", Toast.LENGTH_LONG).show();
+                mSwipeRefreshLayout.setRefreshing(false);
 
             }
         });
 
-        loader.hide();
+        mSwipeRefreshLayout.setRefreshing(false);
 
 
 
     }
 }
+
+
+
+

@@ -36,6 +36,8 @@ public interface ActivitiesService {
 
     @GET("last_index/{station_id}/{pomp}")
     Call<List<Integer>> getLastIndex(@Path("station_id") int station_id , @Path("pomp") int pomp ) ;
+    @GET("price/{carbur_type}")
+    Call<Integer> getPrice(@Path("carbur_type") int carbur_type) ;
 
 
 

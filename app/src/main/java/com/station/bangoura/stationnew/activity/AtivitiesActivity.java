@@ -69,7 +69,8 @@ public class AtivitiesActivity extends AppCompatActivity {
     int phyGaz= 0;
     int rce , rcg ;
     int idPomp ;
-
+    Integer priEss ;
+    Integer priGaz ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -245,6 +246,11 @@ public class AtivitiesActivity extends AppCompatActivity {
                  if (cbGaz.isChecked())
                      rcg = Integer.valueOf(etRCGaz.getText().toString()) ;
 
+
+
+
+
+
                 //Ici pour verifier si apres lindexage il y a le stock disponible .
                 List<Stock> stockList ;
 
@@ -342,36 +348,40 @@ public class AtivitiesActivity extends AppCompatActivity {
 
                           else if ((last_ind_ess.toString().equals(etDepEss.getText().toString()) && last_ind_gaz.toString().equals(etDepGaz.getText().toString())) )
                           {
-                              if ((Integer.valueOf(etFinEss.getText().toString()) - Integer.valueOf(etDepEss.getText().toString()) ) > theoEss   || (Integer.valueOf(etFinGaz.getText().toString()) - Integer.valueOf(etDepGaz.getText().toString()) ) > theoGaz )
+                              if ((Integer.valueOf(etFinEss.getText().toString()) - Integer.valueOf(etDepEss.getText().toString()) ) > theoEss   && (Integer.valueOf(etFinGaz.getText().toString()) - Integer.valueOf(etDepGaz.getText().toString()) ) > theoGaz )
                             {
+                                activitiesService.addActivity(idPomp,Integer.valueOf(etDepEss.getText().toString()),Integer.valueOf(etFinEss.getText().toString()),Integer.valueOf(etDepGaz.getText().toString()),Integer.valueOf(etFinGaz.getText().toString()) ,rce ,rcg , sharedPreferences.getInt(station, 1) )
+                                        .enqueue(new Callback<Activities>() {
+                                            @Override
+                                            public void onResponse(Call<Activities> call, Response<Activities> response) {
+                                                if(response.isSuccessful())
+                                                    Toast.makeText(AtivitiesActivity.this, "Les informations  ont été enregistrées", Toast.LENGTH_SHORT).show();
+                                                else
+                                                    Toast.makeText(AtivitiesActivity.this, "Les informations  ont été enregistrées" , Toast.LENGTH_SHORT).show();
 
-                              Toast.makeText(AtivitiesActivity.this, "Un de vos stocks est  Insuffisant !", Toast.LENGTH_SHORT).show();
 
-                             }
+                                            }
+
+                                            @Override
+                                            public void onFailure(Call<Activities> call, Throwable t) {
+                                                Toast.makeText(AtivitiesActivity.this, "Les informations  ont été enregistrées", Toast.LENGTH_SHORT).show();
+
+                                            }
+                                        });
+                                etFinGaz.setText("");
+                                etDepGaz.setText("");
+                                etDepEss.setText("");
+                                etFinEss.setText("");
+                                etRCEss.setText("");
+                                etRCGaz.setText("");
+
+
+
+
+                            }
                              else
                               {
-                                  activitiesService.addActivity(idPomp,Integer.valueOf(etDepEss.getText().toString()),Integer.valueOf(etFinEss.getText().toString()),Integer.valueOf(etDepGaz.getText().toString()),Integer.valueOf(etFinGaz.getText().toString()) ,5 ,5 , sharedPreferences.getInt(station, 1) )
-                                          .enqueue(new Callback<Activities>() {
-                                              @Override
-                                              public void onResponse(Call<Activities> call, Response<Activities> response) {
-                                                  if(response.isSuccessful())
-                                                      Toast.makeText(AtivitiesActivity.this, "Les informations  ont été enregistrées", Toast.LENGTH_SHORT).show();
-                                                  else
-                                                      Toast.makeText(AtivitiesActivity.this, "Les informations  ont été enregistrées" , Toast.LENGTH_SHORT).show();
-
-
-                                              }
-
-                                              @Override
-                                              public void onFailure(Call<Activities> call, Throwable t) {
-                                                  Toast.makeText(AtivitiesActivity.this, "Les informations  ont été enregistrées", Toast.LENGTH_SHORT).show();
-
-                                              }
-                                          });
-                                  etFinGaz.setText("");
-                                  etDepGaz.setText("");
-                                  etDepEss.setText("");
-                                  etFinEss.setText("");
+                                  Toast.makeText(AtivitiesActivity.this, "Un de vos stocks est  Insuffisant !", Toast.LENGTH_SHORT).show();
 
                               }
 
@@ -400,9 +410,8 @@ public class AtivitiesActivity extends AppCompatActivity {
                               r = (int) spinPompist.getSelectedItemId();
                               int u;
                               u = (int) spinPomp.getSelectedItemId();
-                              if (Integer.valueOf(etDepEss.getText().toString())==0  || Integer.valueOf(etDepGaz.getText().toString()) ==0)
-                              {
-                                  activitiesService.addActivity(pomps.get(u).getId(),Integer.valueOf(etDepEss.getText().toString()),Integer.valueOf(etFinEss.getText().toString()),Integer.valueOf(etDepGaz.getText().toString()),Integer.valueOf(etFinGaz.getText().toString()) ,5 ,5 , sharedPreferences.getInt(station, 1) )
+
+                                  activitiesService.addActivity(pomps.get(u).getId(),Integer.valueOf(etDepEss.getText().toString()),Integer.valueOf(etFinEss.getText().toString()),Integer.valueOf(etDepGaz.getText().toString()),Integer.valueOf(etFinGaz.getText().toString()) ,rce ,rcg , sharedPreferences.getInt(station, 1) )
                                           .enqueue(new Callback<Activities>() {
                                               @Override
                                               public void onResponse(Call<Activities> call, Response<Activities> response) {
@@ -424,10 +433,11 @@ public class AtivitiesActivity extends AppCompatActivity {
                                   etDepGaz.setText("");
                                   etDepEss.setText("");
                                   etFinEss.setText("");
+                                  etRCEss.setText("");
+                                  etRCGaz.setText("");
 
-                              }
-                              else
-                                  Toast.makeText(AtivitiesActivity.this, "Les index doivent demarrer a partir de 0 !", Toast.LENGTH_SHORT).show();
+
+
 
 
 

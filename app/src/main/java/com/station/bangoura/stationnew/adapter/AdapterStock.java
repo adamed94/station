@@ -112,7 +112,7 @@ public class AdapterStock extends RecyclerView.Adapter<AdapterStock.VHStock> {
                     int phyGaz= 0;
                     Stock es ;
                     Stock ga ;
-                    if (response.isSuccessful())
+                    if (response.isSuccessful() && response.body().size() > 0)
                     {
                        for (int i = 0 ; i < response.body().size() ; i ++)
                        {
@@ -140,7 +140,7 @@ public class AdapterStock extends RecyclerView.Adapter<AdapterStock.VHStock> {
 
                           }
 
-                    tvNameStation.setText(stat.getName().toUpperCase());
+                    tvNameStation.setText("STATION " + stat.getName().toUpperCase());
                     essTheo.setText(theoEss+" L");
 
                     essPhy.setText(phyEss+" L");
