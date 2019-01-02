@@ -38,6 +38,8 @@ public interface ActivitiesService {
     Call<List<Integer>> getLastIndex(@Path("station_id") int station_id , @Path("pomp") int pomp ) ;
     @GET("price/{carbur_type}")
     Call<Integer> getPrice(@Path("carbur_type") int carbur_type) ;
+    @GET("coulage/{station_id}/{user_auth}")
+    Call<List<Integer>> getCoulage(@Path("station_id") int station_id ,@Path("user_auth") int user_auth) ;
 
 
 

@@ -102,17 +102,17 @@ public class MainActivity extends AppCompatActivity
                 startActivity(next);
             }
         });
-//        imHome = (ImageView)findViewById(R.id.imHome) ;
-//        imHome.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent next  = new Intent(getApplication(), HomeActivity.class);
-//                startActivity(next);
-//              //  Toast.makeText(getApplicationContext(),sharedPreferences.getString(Email, "Moi") ,Toast.LENGTH_LONG).show() ;
-//
-//
-//            }
-//        });
+        imHome = (ImageView)findViewById(R.id.imHome) ;
+        imHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent next  = new Intent(getApplication(), HomeActivity.class);
+                startActivity(next);
+              //  Toast.makeText(getApplicationContext(),sharedPreferences.getString(Email, "Moi") ,Toast.LENGTH_LONG).show() ;
+
+
+            }
+        });
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 //        mDrawer =(DrawerLayout)findViewById(R.id.drawer_layout);

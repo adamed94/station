@@ -348,8 +348,7 @@ public class AtivitiesActivity extends AppCompatActivity {
 
                           else if ((last_ind_ess.toString().equals(etDepEss.getText().toString()) && last_ind_gaz.toString().equals(etDepGaz.getText().toString())) )
                           {
-                              if ((Integer.valueOf(etFinEss.getText().toString()) - Integer.valueOf(etDepEss.getText().toString()) ) > theoEss   && (Integer.valueOf(etFinGaz.getText().toString()) - Integer.valueOf(etDepGaz.getText().toString()) ) > theoGaz )
-                            {
+
                                 activitiesService.addActivity(idPomp,Integer.valueOf(etDepEss.getText().toString()),Integer.valueOf(etFinEss.getText().toString()),Integer.valueOf(etDepGaz.getText().toString()),Integer.valueOf(etFinGaz.getText().toString()) ,rce ,rcg , sharedPreferences.getInt(station, 1) )
                                         .enqueue(new Callback<Activities>() {
                                             @Override
@@ -378,12 +377,6 @@ public class AtivitiesActivity extends AppCompatActivity {
 
 
 
-                            }
-                             else
-                              {
-                                  Toast.makeText(AtivitiesActivity.this, "Un de vos stocks est  Insuffisant !", Toast.LENGTH_SHORT).show();
-
-                              }
 
 
 
