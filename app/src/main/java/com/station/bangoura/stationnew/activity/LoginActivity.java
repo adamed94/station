@@ -20,6 +20,7 @@ import com.station.bangoura.stationnew.models.Station;
 import com.station.bangoura.stationnew.models.User;
 import com.station.bangoura.stationnew.networkapi.ApiClient;
 import com.station.bangoura.stationnew.networkapi.UserService;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -31,7 +32,7 @@ import java.util.Locale;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+public class LoginActivity extends AppCompatActivity{
     Button btnConn ;
     AlertDialog.Builder alert ;
     EditText etPassword , etUsername , etRCEss , etRCGaz;
@@ -44,6 +45,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public static final String Email = "emailKey";
     public static final String station = "stationKey";
     public static final String userId = "userKey";
+    AVLoadingIndicatorView loader;
 
     CheckBox cbEss , cbGaz ;
 
@@ -53,7 +55,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         requestWindowFeature(Window.FEATURE_NO_TITLE) ;
 
         setContentView(R.layout.activity_login);
-
+        loader = (AVLoadingIndicatorView) findViewById(R.id.loader);
+        loader.hide();
         sharedpreferences = getSharedPreferences(mypreference,getApplicationContext().MODE_PRIVATE);
         sharedpreferences.edit().remove(Name) ;
         sharedpreferences.edit().remove(Email) ;
@@ -84,6 +87,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnConn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String u =  etUsername.getText().toString() ;
                 String p =  etPassword.getText().toString() ;
 
@@ -97,6 +101,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         if (response.isSuccessful()) {
                             //Toast.makeText(getApplicationContext(), response.body().size()+"", Toast.LENGTH_LONG).show();
                             if (response.body()!=null) {
+                                loader.show();
                                 editor.putString(Name,response.body().getName()) ;
                                 editor.putString(Email,response.body().getEmail()) ;
                                 editor.putInt(station,response.body().getStation_id()) ;
@@ -107,6 +112,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             }
                             Intent next  = new Intent(getApplicationContext(), MainActivity.class);
                             //Toast.makeText(getApplicationContext(),sharedpreferences.getString(Email, "Moi") ,Toast.LENGTH_LONG).show() ;
+                            loader.hide();
                             startActivity(next);
                             finish();
 
@@ -114,13 +120,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         }
                         else {
                             etPassword.setText("");
-                            Toast.makeText(getApplicationContext(), "Vos informations sont incorrectes." , Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Ooops ! Une erreur est survenue. "  , Toast.LENGTH_LONG).show();
+                            btnConn.setClickable(true);
                         }
 
                     }
 
                     @Override
                     public void onFailure(retrofit2.Call<User> call, Throwable t) {
+
                         Toast.makeText(getApplicationContext(),"Ooops ! Une erreur est survenue. Veuillez Verifier l'état de votre connexion . " ,Toast.LENGTH_LONG).show() ;
                     }
                 });
@@ -144,33 +152,5 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
-    /**
-     * Called when a view has been clicked.
-     *
-     * @param v The view that was clicked.
-     */
-    @Override
-    public void onClick(View v) {
 
-        switch (v.getId()) {
-            case R.id.cbEss:
-                if (cbEss.isChecked())
-                    etRCEss.setVisibility(View.VISIBLE);
-                else
-                    etRCEss.setVisibility(View.INVISIBLE);
-                break;
-            case R.id.cbGaz:
-                if (cbGaz.isChecked()) {
-                    etRCGaz.setVisibility(View.VISIBLE);
-                    Toast.makeText(getApplicationContext(), "Vos informations sont incorrectes.", Toast.LENGTH_LONG).show();
-                }
-                else {
-                    etRCGaz.setVisibility(View.INVISIBLE);
-                    Toast.makeText(getApplicationContext(),"Vos informations sont incorrectes.",Toast.LENGTH_LONG).show() ;
-                }
-                break;
-
-        }
-
-    }
 }

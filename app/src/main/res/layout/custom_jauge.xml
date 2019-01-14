@@ -3,12 +3,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="400dp"
     android:layout_height="260dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp">
+
+        <TextView
+            android:layout_marginLeft="110dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:textSize="25dp"
+
+            android:textStyle="bold"
+            android:text="Jaugeage"
+            />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="235dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="35dp"
         android:orientation="vertical">
+
+
 
 
         <LinearLayout
@@ -22,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Entrer le numero de la regle "
-                android:inputType="number" />
+                android:inputType="number|numberDecimal" />
 
         </LinearLayout>
         <Spinner

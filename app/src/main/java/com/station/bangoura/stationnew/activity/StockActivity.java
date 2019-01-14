@@ -9,10 +9,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -39,7 +41,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class StockActivity extends AppCompatActivity {
+public class StockActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     ApiClient api;
     StockService stockService;
@@ -62,6 +64,7 @@ public class StockActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences ;
     public static final String station = "stationKey";
     public static final String userId = "userKey";
+    SwipeRefreshLayout mSwipeRefreshLayout ;
 
 
 
@@ -89,16 +92,23 @@ public class StockActivity extends AppCompatActivity {
                 }
             });
         }
+
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipRefresh);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+
         rv = (RecyclerView) findViewById(R.id.rv);
 
         api = new ApiClient();
+
+
+
         stockService = ApiClient.getRetrofit().create(StockService.class);
         stationService = ApiClient.getRetrofit().create(StationService.class);
         Call<List<Station>> stations = stationService.getStationById( sharedPreferences.getInt(station, 1));
         stations.enqueue(new Callback<List<Station>>() {
             @Override
             public void onResponse(Call<List<Station>> call, Response<List<Station>> response) {
-                if (response.isSuccessful())
+                if (response.isSuccessful() && response.body()!=null && response.body().size() !=0 )
 
                 {
                     loader.show();
@@ -146,12 +156,14 @@ public class StockActivity extends AppCompatActivity {
                 final TextView tvVol = (TextView) dialog.findViewById(R.id.tvVol) ;
                 final Spinner spinner = (Spinner) dialog.findViewById(R.id.spinner);
                 btnSubmitJauge = (Button) dialog.findViewById(R.id.btnSubmitPompist);
+                etRuleNumber = (EditText)dialog.findViewById(R.id.etRuleNumber) ;
+                //etRuleNumber.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
 
                 btnSubmitJauge.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 
-                        etRuleNumber = (EditText)dialog.findViewById(R.id.etRuleNumber) ;
+
 
                         if(etRuleNumber.getText().toString().equals(""))
                         {
@@ -169,7 +181,7 @@ public class StockActivity extends AppCompatActivity {
 
 
 
-                                    Call<Float> volune = stockService.getVolume(sharedPreferences.getInt(station, 1) , spinner.getSelectedItemPosition()+1 , Integer.valueOf(etRuleNumber.getText().toString()));
+                                    Call<Float> volune = stockService.getVolume(sharedPreferences.getInt(station, 1) , spinner.getSelectedItemPosition()+1 , Double.valueOf(etRuleNumber.getText().toString()));
                                     volune.enqueue(new Callback<Float>() {
                                         @Override
                                         public void onResponse(Call<Float> call, Response<Float> response) {
@@ -308,6 +320,54 @@ public class StockActivity extends AppCompatActivity {
 //        });
 //
 
+
+    }
+
+    @Override
+    public void onRefresh() {
+
+        stockService = ApiClient.getRetrofit().create(StockService.class);
+        stationService = ApiClient.getRetrofit().create(StationService.class);
+        Call<List<Station>> stations = stationService.getStationById( sharedPreferences.getInt(station, 1));
+        stations.enqueue(new Callback<List<Station>>() {
+            @Override
+            public void onResponse(Call<List<Station>> call, Response<List<Station>> response) {
+                if (response.isSuccessful())
+
+                {
+                    loader.show();
+
+                    stats = response.body();
+                    adapterStock = new AdapterStock(stats);
+                    RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+                    rv.setAdapter(adapterStock);
+                    rv.setLayoutManager(mLayoutManager);
+                    rv.setHasFixedSize(true);
+
+                    stationNames = new String[stats.size()];
+                    for (int i = 0; i < stats.size(); i++) {
+                        stationNames[i] = stats.get(i).getName();
+
+                    }
+
+
+                } else
+                    Toast.makeText(getApplicationContext(), "Not Success", Toast.LENGTH_LONG).show();
+
+
+                loader.hide();
+            }
+
+            @Override
+            public void onFailure(Call<List<Station>> call, Throwable t) {
+                loader.hide();
+                Toast.makeText(getApplicationContext(),"Ooops ! Une erreur est survenue." ,Toast.LENGTH_LONG).show() ;
+
+
+            }
+
+        });
+        mSwipeRefreshLayout.setRefreshing(false);mSwipeRefreshLayout.setRefreshing(false);
 
     }
 }

@@ -22,7 +22,7 @@ import retrofit2.Response;
 
 public class HomeActivity extends AppCompatActivity {
     ActivitiesService activitiesService ;
-    public static final String userId = "userKey";
+    public static final String user = "userKey";
     SharedPreferences sharedPreferences ;
     public static final String station = "stationKey";
     public static final String mypreference = "mypref";
@@ -53,11 +53,11 @@ public class HomeActivity extends AppCompatActivity {
         tvCoulEss = (TextView)findViewById(R.id.tvCoulEss) ;
         tvCoulGaz = (TextView)findViewById(R.id.tvCoulGaz) ;
 
-        retrofit2.Call<List<Integer>> listCoulage = activitiesService.getCoulage(1,1) ;
+        retrofit2.Call<List<Integer>> listCoulage = activitiesService.getCoulage(sharedPreferences.getInt(station, 1),sharedPreferences.getInt(user, 1)) ;
         listCoulage.enqueue(new Callback<List<Integer>>() {
             @Override
             public void onResponse(retrofit2.Call<List<Integer>> call, Response<List<Integer>> response) {
-                if (response.isSuccessful())
+                if (response.isSuccessful() && response.body()!=null && response.body().size() !=0 )
                 {
                     tvCoulEss.setText(response.body().get(0)+" L ");
                     tvCoulGaz.setText(response.body().get(1)+" L ");

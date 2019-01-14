@@ -112,7 +112,7 @@ public class AdapterStock extends RecyclerView.Adapter<AdapterStock.VHStock> {
                     int phyGaz= 0;
                     Stock es ;
                     Stock ga ;
-                    if (response.isSuccessful() && response.body().size() > 0)
+                    if (response.isSuccessful()  && response.body()!=null && response.body().size() !=0)
                     {
                        for (int i = 0 ; i < response.body().size() ; i ++)
                        {
@@ -145,7 +145,7 @@ public class AdapterStock extends RecyclerView.Adapter<AdapterStock.VHStock> {
 
                     essPhy.setText(phyEss+" L");
                     gazTheo.setText(theoGaz+" L");
-                    gazPhy.setText(phyGaz+"L");
+                    gazPhy.setText(phyGaz+" L");
                     tvCoulageEss.setText((theoEss-phyEss)+" L");
                     tvCoulageGaz.setText((theoGaz-phyGaz)+" L");
 

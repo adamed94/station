@@ -3,6 +3,7 @@ package com.station.bangoura.stationnew.activity;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -52,6 +53,7 @@ public class ListCmdLivrsPendingFragment extends Fragment  implements AdapterCmd
     List<String> stationsName = new ArrayList<String>();
     StationService stationService ;
     Dialog dialog ;
+    SharedPreferences sharedPreferences ;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,6 +64,7 @@ public class ListCmdLivrsPendingFragment extends Fragment  implements AdapterCmd
         final View mView = inflater.inflate(R.layout.fragment_list_cmd_livrs_pending, container, false);
         rv = (RecyclerView)mView.findViewById(R.id.rvCmd);
         loader = (AVLoadingIndicatorView)mView.findViewById(R.id.loader) ;
+
 
 
 

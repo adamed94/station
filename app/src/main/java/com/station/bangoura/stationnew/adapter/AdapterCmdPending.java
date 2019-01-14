@@ -108,14 +108,14 @@ public class AdapterCmdPending extends RecyclerView.Adapter<AdapterCmdPending.VH
                                 @Override
                                 public void onResponse(Call<CmdLivrs> call, Response<CmdLivrs> response) {
                                     if(response.isSuccessful())
-                                        Toast.makeText(itemView.getContext() , "RECEIPT", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(itemView.getContext() , "Receptionné !", Toast.LENGTH_LONG).show();
                                     else
-                                        Toast.makeText(itemView.getContext() , "NOT RECEIPT", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(itemView.getContext() , "Ooops ! Une erreur est survenue .", Toast.LENGTH_LONG).show();
                                 }
 
                                 @Override
                                 public void onFailure(Call<CmdLivrs> call, Throwable t) {
-                                   // Toast.makeText(itemView.getContext() , t.getMessage(), Toast.LENGTH_LONG).show();
+                                     Toast.makeText(itemView.getContext() , "Ooops ! Une erreur est survenue . Vérifiez votre connexion .", Toast.LENGTH_LONG).show();
 
                                 }
                             });
@@ -179,27 +179,13 @@ public class AdapterCmdPending extends RecyclerView.Adapter<AdapterCmdPending.VH
         public void bind(CmdLivrs cmdlivrs)
         {
 
-            SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss",Locale.FRENCH);
-            SimpleDateFormat formatt = new SimpleDateFormat("yyyy/MM/dd",Locale.JAPAN);
-            Date date = null;
-            String s = "" ;
 
-            try {
-                date = format.parse(cmdlivrs.getCreated_at());
-                String p = String.valueOf(date);
+            String y , d , m  ;
+            y = cmdlivrs.getCreated_at().toString().substring(0,4) ;
+            m = cmdlivrs.getCreated_at().toString().substring(5,7) ;
+            d = cmdlivrs.getCreated_at().toString().substring(8,10) ;
 
-                 s = p.substring(0,20);
-                String DateToStr = format.format(date);
-                System.out.println("Date  = "+DateToStr);
-                Log.d("msg" ,s+"") ;
-                //dateCmd.setText(s+"");
-
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-
-
-            dateCmd.setText(cmdlivrs.getCreated_at().toString().substring(0,10) +"");
+            dateCmd.setText(d+"/"+m+"/"+y );
             if (cmdlivrs.getState().equals("pending")  )
                 rec.setVisibility(View.VISIBLE);
             else if(cmdlivrs.getState().equals("receipt"))

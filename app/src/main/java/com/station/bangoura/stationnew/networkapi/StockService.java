@@ -15,5 +15,5 @@ public interface StockService {
     Call<List<Stock>> getStock(@Path("id") int id) ;
 
     @GET("get/barremage/{id}/{caburan_type}/{height}")
-    Call<Float> getVolume(@Path("id") int id ,@Path("caburan_type") int caburan_type ,@Path("height") int height  ) ;
+    Call<Float> getVolume(@Path("id") int id ,@Path("caburan_type") int caburan_type ,@Path("height") Double height  ) ;
 }

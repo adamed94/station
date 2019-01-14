@@ -13,7 +13,9 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activity.MainActivity"
-            android:label="@string/app_name" />
+            android:label="@string/app_name" >
+
+        </activity>
         <activity
             android:name=".activity.AddStationActivity"
             android:label="@string/title_activity_add_station"
@@ -37,16 +39,15 @@
             </intent-filter>
         </activity>
         <activity
-
             android:name=".activity.ComandActivity"
             android:label="@string/title_activity_comand"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.StockActivity"
             android:label="@string/title_activity_stock"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.PompistActivity"
             android:label="@string/title_activity_pompist"
@@ -54,10 +55,11 @@
         <activity
             android:name=".activity.AtivitiesActivity"
             android:label="@string/title_activity_ativities"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.StationsActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_stations"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -73,8 +75,23 @@
         <activity
             android:name=".activity.DetListActivity"
             android:label="@string/title_activity_det_list"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.ListApproCaisseActivity"
+            android:label="@string/title_activity_list_appro_caisse"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.CaisseActivity"
+            android:label="@string/title_activity_caisse"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.ListDepenseActivity"
+            android:label="@string/title_activity_list_depense"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity
             SharedPreferences sharedpreferences;
 
 
-            ImageView imCmd ,imStock ,imPompist , imStation , imActivities , imHome;
+            ImageView imCmd ,imStock ,imPompist , imStation , imActivities , imHome , imDep , imAproCaisse ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,14 +54,42 @@ public class MainActivity extends AppCompatActivity
         //imCmd = (ImageView)findViewById(R.id.imCmd) ;
         sharedpreferences = getSharedPreferences(mypreference,getApplicationContext().MODE_PRIVATE);
 
+        imAproCaisse = (ImageView)findViewById(R.id.imAproCaisse) ;
+        imAproCaisse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent next = new Intent(getApplication(), ListApproCaisseActivity.class);
+                startActivity(next);
+
+            }
+        });
+
+        imDep = (ImageView)findViewById(R.id.imDep) ;
+        imDep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent next = new Intent(getApplication(), ListDepenseActivity.class);
+                startActivity(next);
+
+            }
+        });
+
+        imDep = (ImageView)findViewById(R.id.imDep) ;
+        imDep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent next = new Intent(getApplication(), ListDepenseActivity.class);
+                startActivity(next);
+
+            }
+        });
+
         imCmd = (ImageView) findViewById(R.id.imCmd);
 
         imCmd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent next = new Intent(getApplication(), ComandActivity.class);
-
-
                 startActivity(next);
 
             }

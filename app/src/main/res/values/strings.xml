@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Star Oil</string>
+    <string name="app_name">S.B.S | Star Oil</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -25,4 +25,7 @@
     <string name="title_activity_home">Home</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_det_list">Indexage</string>
+    <string name="title_activity_list_appro_caisse">Appros Caisse</string>
+    <string name="title_activity_caisse">Nouvelle Dépense</string>
+    <string name="title_activity_list_depense">Dépenses</string>
 </resources>

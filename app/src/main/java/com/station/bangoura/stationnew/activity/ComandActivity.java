@@ -268,6 +268,7 @@ public class ComandActivity extends AppCompatActivity implements SwipeRefreshLay
                     rv.setAdapter(adapterCmdPending);
                     rv.setLayoutManager(mLayoutManager);
                     rv.setHasFixedSize(true);
+                    mSwipeRefreshLayout.setRefreshing(false);
 
 
 
@@ -279,6 +280,7 @@ public class ComandActivity extends AppCompatActivity implements SwipeRefreshLay
             @Override
             public void onFailure(retrofit2.Call<List<CmdLivrs>> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+                mSwipeRefreshLayout.setRefreshing(false);
 
 
             }
